@@ -1,23 +1,24 @@
 import { Form } from "@/components/form";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 
-export default function SignIn() {
-  const router = useRouter(); 
+export default function SignUp() {
 
-  const onSignIn = async (email, password) => {
-    try {
-      const data = await signIn('credentials', {redirect: false, email, password})
-      console.log(data)
-      if(data.ok){
-        router.replace('/profile')
+  const onSignUp = async (email, password) => {
+    const res = await fetch('/api/auth/signup',{
+      method: "POST",
+      body: JSON.stringify({email, password}),
+      headers: {
+        'Content-Type': 'application/json',
       }
-    }catch (err) {
-      console.log(err.message);
+    })
+    const data = await res.json();
+    if(!res.ok){
+      console.error(data.message)
+      return;
     }
-  } 
+    alert('signup successful');
+  }
 
   return <div className="flex justify-center items-center">
-    <Form signIn onFormSubmit={onSignIn} />
+    <Form onFormSubmit={onSignUp}/>
   </div>;
 }
