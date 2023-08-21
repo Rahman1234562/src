@@ -15,7 +15,7 @@ export const authOptions = {
             if(!user){
                 throw new Error("user don't exit")
             }
-            const isValid = await verifyPassword(password, user.paasssword)
+            const isValid = await verifyPassword(password, user.password)
             if(!isValid){
                 throw new Error("incorrect possword")
             }
