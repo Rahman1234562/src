@@ -1,4 +1,4 @@
-import { registerUser } from "@/components/service/user";
+import { registerUser } from "@/service/user";
 
 export default async function handler (req, res) {
     if(req.method !== "POST"){

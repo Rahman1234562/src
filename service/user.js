@@ -30,8 +30,8 @@ export const registerUser = async (email, password) => {
     if(found) {
         throw new Error("user exist")
     }
-    const hashPassword = await (password, 12)
-        users.push({id: users.lenght + 1, email, password: hashPassword });
+    const hashPassword = await bcrypt.hash(password, 12)
+        users.push({id: users.length + 1, email, password: hashPassword });
         fs.writeFileSync(filePath, JSON.stringify(users));
         return {email}
     

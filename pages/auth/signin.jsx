@@ -11,7 +11,9 @@ export default function SignIn() {
       console.log(data)
       if(data.ok){
         router.replace('/profile')
+      
       }
+     
     }catch (err) {
       console.log(err.message);
     }
